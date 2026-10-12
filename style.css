@@ -1,0 +1,462 @@
+:root {
+  --paper: #f6efe1;
+  --paper-deep: #ece1cb;
+  --ink: #2b241c;
+  --ink-soft: #5d5346;
+  --accent: #9b2c2c;
+  --accent-soft: #c96a4a;
+  --line: #d8c8a8;
+  --card: #fffaf0;
+  --shadow: rgba(80, 60, 30, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background-color: var(--paper);
+  /* 한지 섬유 결(고운 노이즈) → 한지 얼룩(굵은 노이즈)
+     → 먹 번짐(radial) → 은은한 빛 → 한지 결(가로선) 순으로 겹친다. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='0.14'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='360' height='360' filter='url(%23m)' opacity='0.1'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 58% 44% at 16% 9%, rgba(43, 36, 28, 0.11), transparent 66%),
+    radial-gradient(ellipse 44% 56% at 91% 24%, rgba(43, 36, 28, 0.075), transparent 64%),
+    radial-gradient(ellipse 72% 50% at 78% 91%, rgba(43, 36, 28, 0.095), transparent 70%),
+    radial-gradient(ellipse 48% 38% at 5% 82%, rgba(43, 36, 28, 0.06), transparent 66%),
+    radial-gradient(ellipse 40% 30% at 62% 46%, rgba(43, 36, 28, 0.04), transparent 68%),
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.32) 0%, transparent 62%),
+    repeating-linear-gradient(0deg, rgba(150, 120, 70, 0.04) 0 1px, transparent 1px 26px);
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+    no-repeat, repeat;
+  background-size: 200px 200px, 360px 360px, auto, auto, auto, auto, auto, auto, auto;
+  background-attachment: fixed;
+  background-blend-mode: multiply, multiply, normal, normal, normal, normal, normal, normal,
+    normal;
+  font-family: "Nanum Myeongjo", "Noto Serif KR", "Batang", "바탕", "Apple SD Gothic Neo",
+    "Malgun Gothic", serif;
+  line-height: 1.6;
+  padding: 0 16px 120px;
+}
+
+/* ---------- 배경 먹글씨(漢詩) ---------- */
+.ink-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.ink-col {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "LXGW WenKai TC", serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.16em;
+  color: rgba(43, 36, 28, 0.14);
+  text-shadow: 0 0 6px rgba(43, 36, 28, 0.12), 0 0 1px rgba(43, 36, 28, 0.1);
+  filter: url(#brush) blur(0.3px);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ink-col.c1 { margin-top: 3vh; }
+.ink-col.c2 { margin-top: 27vh; color: rgba(43, 36, 28, 0.11); }
+.ink-col.c3 { margin-top: 9vh; }
+.ink-col.c4 { margin-top: 42vh; color: rgba(43, 36, 28, 0.1); }
+.ink-col.c5 { margin-top: 17vh; }
+.ink-col.c6 { margin-top: 34vh; color: rgba(43, 36, 28, 0.12); }
+.ink-col.c7 { margin-top: 6vh; color: rgba(43, 36, 28, 0.105); }
+.ink-col.c8 { margin-top: 46vh; }
+.ink-col.c9 { margin-top: 22vh; color: rgba(43, 36, 28, 0.12); }
+.ink-col.c10 { margin-top: 38vh; color: rgba(43, 36, 28, 0.1); }
+
+.ink-seal {
+  position: absolute;
+  right: 4vw;
+  bottom: 7vh;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "LXGW WenKai TC", serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  color: rgba(155, 44, 44, 0.5);
+  border: 3px solid rgba(155, 44, 44, 0.45);
+  border-radius: 6px;
+  padding: 7px 5px;
+  text-shadow: 0 0 4px rgba(155, 44, 44, 0.35);
+}
+
+/* ---------- 헤더 ---------- */
+.site-header {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 44px 0 20px;
+  text-align: center;
+}
+
+.site-title {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 2.9rem);
+  letter-spacing: 0.28em;
+  color: #111111;
+  text-indent: 0.28em;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(0.85rem, 2.6vw, 1rem);
+  letter-spacing: 0.1em;
+}
+
+/* ---------- 시 선택 탭 ---------- */
+.poem-tabs {
+  max-width: 780px;
+  margin: 0 auto 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.tab-btn {
+  padding: 8px 20px;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.tab-btn:hover {
+  border-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tab-btn.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(155, 44, 44, 0.32);
+}
+
+/* ---------- 시 카드 ---------- */
+.poem-container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.poem-card {
+  background-color: var(--card);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='0.09'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 30px clamp(16px, 5vw, 44px) 34px;
+  box-shadow: 0 10px 30px -18px var(--shadow);
+}
+
+.poem-head {
+  text-align: center;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.poem-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  letter-spacing: 0.12em;
+}
+
+.poem-title .hanja {
+  color: var(--accent);
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+}
+
+.poem-author {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.poem-toolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 18px 0 6px;
+  flex-wrap: wrap;
+}
+
+.tool-btn {
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tool-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
+
+.tool-btn.off {
+  color: #a99a80;
+  text-decoration: line-through;
+}
+
+/* ---------- 시 한 줄 ---------- */
+.poem-line {
+  padding: 22px 0;
+}
+
+.poem-line + .poem-line {
+  border-top: 1px solid rgba(216, 200, 168, 0.55);
+}
+
+.line-hanja {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 12px;
+}
+
+.char {
+  font: inherit;
+  font-size: clamp(1.8rem, 6.6vw, 2.7rem);
+  line-height: 1.2;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.char:hover {
+  color: var(--accent);
+  background: rgba(155, 44, 44, 0.08);
+}
+
+.char.selected {
+  color: var(--accent);
+  background: rgba(155, 44, 44, 0.14);
+  border-color: var(--accent-soft);
+}
+
+.line-reading {
+  margin-top: 10px;
+  text-align: center;
+  font-size: clamp(1rem, 3.4vw, 1.25rem);
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  color: var(--accent);
+}
+
+.line-meaning {
+  margin-top: 6px;
+  text-align: center;
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  color: var(--ink-soft);
+}
+
+/* 학습 토글 상태 */
+.hide-hanja .char {
+  color: transparent;
+  text-shadow: 0 0 12px rgba(43, 36, 28, 0.4);
+  user-select: none;
+}
+
+.hide-hanja .char:hover,
+.hide-hanja .char.selected {
+  color: transparent;
+  background: rgba(155, 44, 44, 0.08);
+}
+
+.hide-reading .line-reading {
+  color: transparent;
+  text-shadow: 0 0 12px rgba(43, 36, 28, 0.4);
+  user-select: none;
+}
+
+.hide-meaning .line-meaning {
+  visibility: hidden;
+}
+
+/* ---------- 안내 문구 ---------- */
+.hint {
+  max-width: 780px;
+  margin: 26px auto 0;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.hint strong {
+  color: var(--accent);
+}
+
+.load-error {
+  text-align: center;
+  color: var(--accent);
+  font-size: 0.95rem;
+  padding: 30px 10px;
+}
+
+.load-error code {
+  font-family: Consolas, "Courier New", monospace;
+  background: rgba(43, 36, 28, 0.06);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+/* ---------- 한자 팝업 카드 ---------- */
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 36, 28, 0.25);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 40;
+}
+
+.popup-backdrop.show {
+  opacity: 1;
+}
+
+.popup {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translate(-50%, 24px);
+  width: min(340px, calc(100vw - 32px));
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px 24px;
+  box-shadow: 0 22px 50px -18px var(--shadow);
+  opacity: 0;
+  z-index: 50;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.popup.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.popup-close:hover {
+  color: var(--accent);
+  background: rgba(155, 44, 44, 0.1);
+}
+
+.popup-char {
+  text-align: center;
+  font-size: 4.4rem;
+  line-height: 1.1;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.popup-info {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.popup-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 8px 4px;
+  border-top: 1px solid rgba(216, 200, 168, 0.6);
+}
+
+.popup-row dt {
+  flex: 0 0 34px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.popup-row dd {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+}
+
+.popup-row dd#popupSound {
+  color: var(--accent);
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 720px) {
+  .ink-col.c4,
+  .ink-col.c7,
+  .ink-col.c9,
+  .ink-col.c10,
+  .ink-seal {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-bottom: 150px;
+  }
+
+  .ink-col.c2,
+  .ink-col.c6 {
+    display: none;
+  }
+
+  .poem-card {
+    padding: 22px 14px 26px;
+  }
+
+  .line-reading {
+    letter-spacing: 0.22em;
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한시 암기용</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/lxgwwenkaitc-bold.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="brush" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.013 0.028"
+        numOctaves="2"
+        seed="9"
+        result="noise"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="8"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </svg>
+
+  <div class="ink-bg" aria-hidden="true">
+    <span class="ink-col c1">春眠不覺曉</span>
+    <span class="ink-col c2">處處聞啼鳥</span>
+    <span class="ink-col c3">夜來風雨聲</span>
+    <span class="ink-col c4">花落知多少</span>
+    <span class="ink-col c5">雨歇長堤草</span>
+    <span class="ink-col c6">送君南浦動</span>
+    <span class="ink-col c7">昨夜千村雪</span>
+    <span class="ink-col c8">今朝萬樹梅</span>
+    <span class="ink-col c9">近來安否問</span>
+    <span class="ink-col c10">月到紗窓妾</span>
+    <span class="ink-seal">詩</span>
+  </div>
+
+  <header class="site-header">
+    <h1 class="site-title">한시 교실</h1>
+    <p class="site-subtitle">漢詩 · 한자와 함께 읽는 옛 노래</p>
+  </header>
+
+  <nav class="poem-tabs" id="poemTabs" aria-label="한시 선택"></nav>
+
+  <main class="poem-container" id="poemContainer"></main>
+
+  <p class="hint">💡 한자를 클릭하면 그 글자의 <strong>뜻</strong>과 <strong>음</strong>을 볼 수 있어요.</p>
+
+  <div class="popup" id="charPopup" hidden role="dialog" aria-modal="true" aria-label="한자 정보">
+    <button class="popup-close" id="popupClose" aria-label="닫기">×</button>
+    <div class="popup-char" id="popupChar"></div>
+    <dl class="popup-info">
+      <div class="popup-row">
+        <dt>뜻</dt>
+        <dd id="popupMeaning"></dd>
+      </div>
+      <div class="popup-row">
+        <dt>음</dt>
+        <dd id="popupSound"></dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="popup-backdrop" id="popupBackdrop" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
