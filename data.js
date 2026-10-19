@@ -88,7 +88,7 @@ window.POEMS_DATA = [
       {
         "chars": [
           { "h": "大", "sound": "대", "mean": "큰" },
-          { "h": "洞", "sound": "동", "mean": "골" },
+          { "h": "同", "sound": "동", "mean": "같을" },
           { "h": "江", "sound": "강", "mean": "강" },
           { "h": "水", "sound": "수", "mean": "물" },
           { "h": "何", "sound": "하", "mean": "어찌" },
