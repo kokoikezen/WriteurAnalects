@@ -1,5 +1,3 @@
-// 한시 데이터 - data.json 내용을 그대로 JS 변수로 옮김
-// (로컬 서버 없이 index.html 을 바로 열어도 표시됩니다.)
 window.POEMS_DATA = [
   {
     "id": "chunhyo",
@@ -103,15 +101,15 @@ window.POEMS_DATA = [
       {
         "chars": [
           { "h": "別", "sound": "별", "mean": "이별할" },
-          { "h": "後", "sound": "후", "mean": "뒤" },
-          { "h": "離", "sound": "리", "mean": "떠날" },
-          { "h": "愁", "sound": "수", "mean": "시름" },
-          { "h": "白", "sound": "백", "mean": "흰" },
-          { "h": "髮", "sound": "발", "mean": "머리" },
-          { "h": "多", "sound": "다", "mean": "많을" }
+          { "h": "淚", "sound": "루", "mean": "눈물" },
+          { "h": "年", "sound": "년", "mean": "해" },
+          { "h": "年", "sound": "년", "mean": "해" },
+          { "h": "添", "sound": "첨", "mean": "더할" },
+          { "h": "綠", "sound": "록", "mean": "푸를" },
+          { "h": "波", "sound": "파", "mean": "물결" }
         ],
-        "reading": "별후리수백발다",
-        "meaning": "이별한 뒤 시름에 흰머리만 많아지네"
+        "reading": "별루년년첨록파",
+        "meaning": "이별의 눈물이 해마다 푸른 물결에 더해지네."
       }
     ]
   },
@@ -127,7 +125,7 @@ window.POEMS_DATA = [
           { "h": "昨", "sound": "작", "mean": "어제" },
           { "h": "夜", "sound": "야", "mean": "밤" },
           { "h": "千", "sound": "천", "mean": "일천, 온갖, 모든" },
-          { "h": "寸", "sound": "촌", "mean": "마디" },
+          { "h": "村", "sound": "촌", "mean": "마을" },
           { "h": "雪", "sound": "설", "mean": "눈" }
         ],
         "reading": "작야천촌설",
@@ -191,14 +189,14 @@ window.POEMS_DATA = [
       {
         "chars": [
           { "h": "月", "sound": "월", "mean": "달" },
-          { "h": "到", "sound": "도", "mean": "이를" },
+          { "h": "白", "sound": "백", "mean": "흰" },
           { "h": "紗", "sound": "사", "mean": "비단" },
           { "h": "窓", "sound": "창", "mean": "창" },
           { "h": "妾", "sound": "첩", "mean": "첩" },
           { "h": "恨", "sound": "한", "mean": "한할" },
           { "h": "多", "sound": "다", "mean": "많을" }
         ],
-        "reading": "월도사창첩한다",
+        "reading": "월백사창첩한다",
         "meaning": "달 비친 사창에 저의 한이 많습니다"
       },
       {
@@ -220,11 +218,11 @@ window.POEMS_DATA = [
           { "h": "前", "sound": "전", "mean": "앞" },
           { "h": "石", "sound": "석", "mean": "돌" },
           { "h": "路", "sound": "로", "mean": "길" },
-          { "h": "半", "sound": "반", "mean": "반" },
+          { "h": "已", "sound": "이", "mean": "이미" },
           { "h": "成", "sound": "성", "mean": "이룰" },
           { "h": "沙", "sound": "사", "mean": "모래" }
         ],
-        "reading": "문전석로반성사",
+        "reading": "문전석로이성사",
         "meaning": "문 앞의 돌길은 이미 모래가 되었을 것입니다."
       }
     ]
