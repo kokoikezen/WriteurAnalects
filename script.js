@@ -1,12 +1,14 @@
 // 한시 교실 - 동작 로직
-// data.js 를 먼저 불러와 화면에 그리고, 한자 클릭 시 뜻/음을 보여줍니다.
+// data.js 를 먼저 불러와 작품 목록을 그리고, 항목을 선택하면 본문을 보여줍니다.
+// 한자 클릭 시 뜻/음을 팝업으로 보여줍니다.
 // (JS 데이터라 index.html 을 파일로 바로 열어도 됩니다.)
 
 (function () {
   "use strict";
 
-  const tabsEl = document.getElementById("poemTabs");
+  const indexEl = document.getElementById("workIndex");
   const containerEl = document.getElementById("poemContainer");
+  const hintEl = document.getElementById("hint");
   const popup = document.getElementById("charPopup");
   const backdrop = document.getElementById("popupBackdrop");
   const popupChar = document.getElementById("popupChar");
@@ -14,27 +16,87 @@
   const popupSound = document.getElementById("popupSound");
   const popupClose = document.getElementById("popupClose");
 
-  let POEMS = [];
-  let currentIndex = 0;
+  const CATEGORY_HANJA = { 한시: "漢詩", 논어: "論語" };
+
+  let WORKS = [];
+  let currentIndex = -1;
   let selectedChar = null;
 
-  /** 시 선택 탭을 그립니다. */
-  function renderTabs() {
-    tabsEl.innerHTML = "";
-    POEMS.forEach((poem, index) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "tab-btn" + (index === currentIndex ? " active" : "");
-      btn.textContent = poem.title;
-      btn.addEventListener("click", () => {
-        if (index === currentIndex) return;
-        currentIndex = index;
-        renderTabs();
-        renderPoem(poem);
-        closePopup();
-      });
-      tabsEl.appendChild(btn);
+  /** 작품을 category 값으로 묶습니다. */
+  function groupByCategory() {
+    const groups = new Map();
+    WORKS.forEach((work, index) => {
+      const category = work.category || "기타";
+      if (!groups.has(category)) groups.set(category, []);
+      groups.get(category).push({ work, index });
     });
+    return groups;
+  }
+
+  /** 작품 목록(인덱스)을 그립니다. */
+  function renderIndex() {
+    indexEl.innerHTML = "";
+
+    groupByCategory().forEach((items, category) => {
+      const section = document.createElement("section");
+      section.className = "index-group";
+
+      const heading = document.createElement("h2");
+      heading.className = "index-heading";
+      const hanja = CATEGORY_HANJA[category] || "";
+      heading.innerHTML =
+        escapeHtml(category) +
+        (hanja ? ' <span class="index-heading-hanja">' + escapeHtml(hanja) + "</span>" : "");
+
+      const list = document.createElement("div");
+      list.className = "index-list";
+
+      items.forEach(({ work, index }) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "work-card" + (index === currentIndex ? " active" : "");
+
+        const title = document.createElement("span");
+        title.className = "work-title";
+        title.innerHTML =
+          escapeHtml(work.title) +
+          (work.titleHanja
+            ? ' <span class="hanja">' + escapeHtml(work.titleHanja) + "</span>"
+            : "");
+
+        const meta = document.createElement("span");
+        meta.className = "work-meta";
+        meta.textContent =
+          work.author + (work.authorHanja ? " (" + work.authorHanja + ")" : "");
+
+        btn.append(title, meta);
+        btn.addEventListener("click", () => openWork(index));
+        list.appendChild(btn);
+      });
+
+      section.append(heading, list);
+      indexEl.appendChild(section);
+    });
+  }
+
+  /** 목록 화면으로 돌아갑니다. */
+  function showIndex() {
+    closePopup();
+    containerEl.innerHTML = "";
+    indexEl.hidden = false;
+    hintEl.hidden = true;
+    renderIndex();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /** 선택한 작품 화면을 엽니다. */
+  function openWork(index) {
+    currentIndex = index;
+    closePopup();
+    indexEl.hidden = true;
+    hintEl.hidden = false;
+    renderPoem(WORKS[index]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   /** 한 줄(line)을 DOM으로 만듭니다. */
@@ -72,12 +134,20 @@
     return lineEl;
   }
 
-  /** 하나의 시 전체를 그립니다. */
+  /** 하나의 작품 전체를 그립니다. */
   function renderPoem(poem) {
     containerEl.innerHTML = "";
+    selectedChar = null;
 
     const card = document.createElement("article");
     card.className = "poem-card";
+
+    // 목록으로 돌아가기
+    const backBtn = document.createElement("button");
+    backBtn.type = "button";
+    backBtn.className = "back-btn";
+    backBtn.textContent = "← 목록";
+    backBtn.addEventListener("click", showIndex);
 
     // 제목 + 지은이
     const head = document.createElement("div");
@@ -87,13 +157,14 @@
     title.className = "poem-title";
     title.innerHTML =
       escapeHtml(poem.title) +
-      ' <span class="hanja">' +
-      escapeHtml(poem.titleHanja) +
-      "</span>";
+      (poem.titleHanja
+        ? ' <span class="hanja">' + escapeHtml(poem.titleHanja) + "</span>"
+        : "");
 
     const author = document.createElement("p");
     author.className = "poem-author";
-    author.textContent = poem.author + " (" + poem.authorHanja + ")";
+    author.textContent =
+      poem.author + (poem.authorHanja ? " (" + poem.authorHanja + ")" : "");
 
     head.append(title, author);
 
@@ -106,7 +177,7 @@
     const meaningToggle = makeToggle("속뜻 가리기", "hide-meaning");
     toolbar.append(hanjaToggle, readingToggle, meaningToggle);
 
-    card.append(head, toolbar);
+    card.append(backBtn, head, toolbar);
 
     // 각 줄
     poem.lines.forEach((line) => card.appendChild(createLine(line)));
@@ -154,6 +225,8 @@
 
   /** 팝업을 닫습니다. */
   function closePopup() {
+    if (popup.hidden) return;
+
     backdrop.classList.remove("show");
     popup.classList.remove("show");
 
@@ -181,17 +254,16 @@
     if (e.key === "Escape" && !popup.hidden) closePopup();
   });
 
-  // 데이터(data.js) 로드 후 초기 렌더링
+  // 데이터(data.js) 로드 후 초기 목록 렌더링
   function init() {
     try {
-      POEMS = window.POEMS_DATA || [];
+      WORKS = window.POEMS_DATA || [];
 
-      if (Array.isArray(POEMS) && POEMS.length > 0) {
-        renderTabs();
-        renderPoem(POEMS[currentIndex]);
+      if (Array.isArray(WORKS) && WORKS.length > 0) {
+        showIndex();
       }
     } catch (err) {
-      console.error("한시 데이터를 불러오지 못했습니다:", err);
+      console.error("작품 데이터를 불러오지 못했습니다:", err);
       containerEl.innerHTML =
         '<p class="load-error">데이터를 불러오지 못했어요. data.js 파일을 확인해 주세요.</p>';
     }

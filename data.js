@@ -1,5 +1,6 @@
 window.POEMS_DATA = [
   {
+    "category": "한시",
     "id": "chunhyo",
     "title": "춘효",
     "titleHanja": "春曉",
@@ -53,6 +54,7 @@ window.POEMS_DATA = [
     ]
   },
   {
+    "category": "한시",
     "id": "songin",
     "title": "송인",
     "titleHanja": "送人",
@@ -114,6 +116,7 @@ window.POEMS_DATA = [
     ]
   },
   {
+    "category": "한시",
     "id": "seolhu",
     "title": "설후",
     "titleHanja": "雪後",
@@ -167,6 +170,7 @@ window.POEMS_DATA = [
     ]
   },
   {
+    "category": "한시",
     "id": "jasul",
     "title": "자술",
     "titleHanja": "自述",
@@ -226,5 +230,232 @@ window.POEMS_DATA = [
         "meaning": "문 앞의 돌길은 이미 모래가 되었을 것입니다."
       }
     ]
-  }
+  },
+  {
+    "category": "논어",
+    "id": "anyeon-1",
+    "title": "안연 제1장",
+    "titleHanja": "顔淵 一章",
+    "author": "공자",
+    "authorHanja": "孔子",
+    "lines": [
+      {
+        "chars": [
+          { "h": "一", "sound": "일", "mean": "하나" },
+          { "h": "日", "sound": "일", "mean": "날" },
+          { "h": "克", "sound": "극", "mean": "이길" },
+          { "h": "己", "sound": "기", "mean": "몸" },
+          { "h": "復", "sound": "복", "mean": "돌아올" },
+          { "h": "禮", "sound": "례", "mean": "예의" }
+        ],
+        "reading": "일일극기복례",
+        "meaning": "하루라도 자기 욕심을 이기고 예로 돌아간다면"
+      },
+      {
+        "chars": [
+          { "h": "天", "sound": "천", "mean": "하늘" },
+          { "h": "下", "sound": "하", "mean": "아래" },
+          { "h": "歸", "sound": "귀", "mean": "돌아갈" },
+          { "h": "仁", "sound": "인", "mean": "어질" },
+          { "h": "焉", "sound": "언", "mean": "어조사" }
+        ],
+        "reading": "천하귀인언",
+        "meaning": "천하가 인으로 돌아갈 것이다."
+      },
+      {
+        "chars": [
+          { "h": "爲", "sound": "위", "mean": "할" },
+          { "h": "仁", "sound": "인", "mean": "어질" },
+          { "h": "由", "sound": "유", "mean": "말 말미암을" },
+          { "h": "己", "sound": "기", "mean": "몸" }
+        ],
+        "reading": "위인유기",
+        "meaning": "인을 실천하는 것은 자기에게서 말미암는 것이니"
+      },
+      {
+        "chars": [
+          { "h": "而", "sound": "이", "mean": "말이을" },
+          { "h": "由", "sound": "유", "mean": "말미암을" },
+          { "h": "人", "sound": "인", "mean": "사람" },
+          { "h": "乎", "sound": "호", "mean": "어조사" },
+          { "h": "哉", "sound": "재", "mean": "어조사" }
+        ],
+        "reading": "이유인호재",
+        "meaning": "남에게서 말미암겠는가."
+      }
+    ]
+  },
+  {
+    "category": "논어",
+    "id": "wijung-3",
+    "title": "위정 제3장",
+    "titleHanja": "爲政 三章",
+    "author": "공자",
+    "authorHanja": "孔子",
+    "lines": [
+      {
+        "chars": [
+          { "h": "道", "sound": "도", "mean": "인도할" },
+          { "h": "之", "sound": "지", "mean": "이" },
+          { "h": "以", "sound": "이", "mean": "써" },
+          { "h": "政", "sound": "정", "mean": "정사" }
+        ],
+        "reading": "도지이정",
+        "meaning": "법으로써 그들을 이끌고"
+      },
+      {
+        "chars": [
+          { "h": "齊", "sound": "제", "mean": "다스릴" },
+          { "h": "之", "sound": "지", "mean": "이" },
+          { "h": "以", "sound": "이", "mean": "써" },
+          { "h": "刑", "sound": "형", "mean": "형벌" }
+        ],
+        "reading": "제지이형",
+        "meaning": "형벌로써 그들을 다스리면,"
+      },
+      {
+        "chars": [
+          { "h": "民", "sound": "민", "mean": "백성" },
+          { "h": "免", "sound": "면", "mean": "면할" },
+          { "h": "而", "sound": "이", "mean": "말이을" },
+          { "h": "無", "sound": "무", "mean": "없을" },
+          { "h": "恥", "sound": "치", "mean": "부끄러움" }
+        ],
+        "reading": "민면이무치",
+        "meaning": "백성이 (형벌은) 면하겠지만 부끄러움이 없을 것이고,"
+      },
+      {
+        "chars": [
+          { "h": "道", "sound": "도", "mean": "인도할" },
+          { "h": "之", "sound": "지", "mean": "이" },
+          { "h": "以", "sound": "이", "mean": "써" },
+          { "h": "德", "sound": "덕", "mean": "덕" }
+        ],
+        "reading": "도지이덕",
+        "meaning": "덕으로써 그들을 이끌고"
+      },
+      {
+        "chars": [
+          { "h": "齊", "sound": "제", "mean": "다스릴" },
+          { "h": "之", "sound": "지", "mean": "이" },
+          { "h": "以", "sound": "이", "mean": "써" },
+          { "h": "禮", "sound": "례", "mean": "예도" }
+        ],
+        "reading": "제지이례",
+        "meaning": "예로써 그들을 다스리면"
+      },
+      {
+        "chars": [
+          { "h": "有", "sound": "유", "mean": "있을" },
+          { "h": "恥", "sound": "치", "mean": "부끄러움" },
+          { "h": "且", "sound": "차", "mean": "또" },
+          { "h": "格", "sound": "격", "mean": "바로잡힐" }
+        ],
+        "reading": "유치차격",
+        "meaning": "부끄러움이 있고 장차 (선에) 이르게 될 것이다."
+      }
+    ]
+  },
+  {
+    "category": "논어",
+    "id": "ein-15",
+    "title": "이인 15장",
+    "titleHanja": "里仁 十五章",
+    "author": "공자",
+    "authorHanja": "孔子",
+    "lines": [
+      {
+        "chars": [
+          { "h": "子", "sound": "자", "mean": "아들, 성현군자(극존칭)" },
+          { "h": "曰", "sound": "왈", "mean": "가로(말할)" },
+          { "h": "參", "sound": "참/삼", "mean": "참여할/셋, 삼(이름)" },
+          { "h": "乎", "sound": "호", "mean": "어조사" },
+          { "h": "吾", "sound": "오", "mean": "나" },
+          { "h": "道", "sound": "도", "mean": "도" },
+          { "h": "一", "sound": "일", "mean": "하나" },
+          { "h": "以", "sound": "이", "mean": "써" },
+          { "h": "貫", "sound": "관", "mean": "꿸" },
+          { "h": "之", "sound": "지", "mean": "어조사" }
+        ],
+        "reading": "자왈 삼호 오도일이관지",
+        "meaning": "공자께서 말씀하셨다. \"삼(증자)아! 내 도는 하나로 (모든 것을) 꿰뚫고 있다.\""
+      },
+      {
+        "chars": [
+          { "h": "曾", "sound": "증", "mean": "일찍, 증자" },
+          { "h": "子", "sound": "자", "mean": "아들, 성현군자(극존칭)" },
+          { "h": "曰", "sound": "왈", "mean": "가로(말할)" },
+          { "h": "唯", "sound": "유", "mean": "오직, 대답('예')" }
+        ],
+        "reading": "증자왈 유",
+        "meaning": "증자가 대답하였다. \"예!\""
+      },
+      {
+        "chars": [
+          { "h": "子", "sound": "자", "mean": "아들, 성현군자(극존칭)" },
+          { "h": "出", "sound": "출", "mean": "날" },
+          { "h": "門", "sound": "문", "mean": "문" },
+          { "h": "人", "sound": "인", "mean": "사람" }
+        ],
+        "reading": "자출 문인",
+        "meaning": "공자께서 나가시자 문인(제자)들이"
+      },
+      {
+        "chars": [
+          { "h": "問", "sound": "문", "mean": "물을" },
+          { "h": "曰", "sound": "왈", "mean": "가로(말할)" },
+          { "h": "何", "sound": "하", "mean": "어찌" },
+          { "h": "謂", "sound": "위", "mean": "이를" },
+          { "h": "也", "sound": "야", "mean": "어조사" }
+        ],
+        "reading": "문왈 하위야",
+        "meaning": "물었다. \"무슨 말씀이십니까?\""
+      },
+      {
+        "chars": [
+          { "h": "曾", "sound": "증", "mean": "일찍, 증자" },
+          { "h": "子", "sound": "자", "mean": "아들, 성현군자(극존칭)" },
+          { "h": "曰", "sound": "왈", "mean": "가로(말할)" },
+          { "h": "夫", "sound": "부", "mean": "지아비(남편), 선생" },
+          { "h": "子", "sound": "자", "mean": "아들, 성현군자(극존칭)" },
+          { "h": "之", "sound": "지", "mean": "어조사" },
+          { "h": "道", "sound": "도", "mean": "길" },
+          { "h": "忠", "sound": "충", "mean": "충성" },
+          { "h": "恕", "sound": "서", "mean": "용서할/헤아릴" },
+          { "h": "而", "sound": "이", "mean": "말이을" },
+          { "h": "已", "sound": "이", "mean": "이" },
+          { "h": "矣", "sound": "의", "mean": "어조사" }
+        ],
+        "reading": "증자왈 부자지도 충서이이의",
+        "meaning": "증자가 말하였다. \"선생님의 도는 충(정성을 다하는 것)과 서(마음을 미루어 남을 헤아리는 것)일 뿐이다.\""
+      }
+    ]
+  }  
 ];
+
+/*
+  ── 논어(論語) 추가 방법 ──
+
+  {
+    "category": "논어",
+    "id": "hagi-1",
+    "title": "학이 1장",
+    "titleHanja": "學而 一章",
+    "author": "공자",
+    "authorHanja": "孔子",
+    "lines": [
+      {
+        "chars": [
+          { "h": "學", "sound": "학", "mean": "배울" },
+          { "h": "而", "sound": "이", "mean": "말이을" },
+          { "h": "時", "sound": "시", "mean": "때" },
+          { "h": "習", "sound": "습", "mean": "익힐" },
+          { "h": "之", "sound": "지", "mean": "갈" }
+        ],
+        "reading": "학이시습지",
+        "meaning": "배우고 때때로 익히면"
+      }
+    ]
+  }
+*/
+
